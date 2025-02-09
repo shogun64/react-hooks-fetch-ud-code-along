@@ -1,5 +1,3 @@
-import React from "react";
-
 function Filter({ category, onCategoryChange }) {
   return (
     <div className="Filter">
