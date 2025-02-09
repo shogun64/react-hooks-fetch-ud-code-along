@@ -93,7 +93,7 @@ correct, and that we're fetching data from the server:
 // src/components/ShoppingList.js
 
 // import useEffect
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // ...rest of imports
 
 function ShoppingList() {
@@ -103,8 +103,15 @@ function ShoppingList() {
   // Add useEffect hook
   useEffect(() => {
     fetch("http://localhost:4000/items")
-      .then((r) => r.json())
-      .then((items) => console.log(items));
+      .then(r => {
+        if (r.ok) {
+          return r.json()
+        } else {
+          console.log("fetch request failed")
+        }
+      })
+      .then(items => console.log(items))
+      .catch(error => console.log(error))
   }, []);
 
   // ...rest of component
@@ -129,8 +136,15 @@ function ShoppingList() {
     // Update state by passing the array of items to setItems  
   useEffect(() => {
     fetch("http://localhost:4000/items")
-      .then((r) => r.json())
-      .then((items) => setItems(items));
+      .then(r => {
+        if (r.ok) {
+          return r.json()
+        } else {
+          console.log("fetch request failed")
+        }
+      })
+      .then(items => setItems(items))
+      .catch(error => console.log(error))
   }, []);
 
   // ...rest of component
@@ -236,8 +250,15 @@ function handleSubmit(e) {
     },
     body: JSON.stringify(itemData),
   })
-    .then((r) => r.json())
-    .then((newItem) => console.log(newItem));
+    .then(r => {
+      if (r.ok) {
+        return r.json()
+      } else {
+        console.log("item failed to create")
+      }
+    })
+    .then(newItem => console.log(newItem))
+    .catch(error => console.log("error"))
 }
 ```
 
@@ -282,8 +303,15 @@ function ShoppingList() {
 
   useEffect(() => {
     fetch("http://localhost:4000/items")
-      .then((r) => r.json())
-      .then((items) => setItems(items));
+      .then(r => {
+        if (r.ok) {
+          return r.json()
+        } else {
+          console.log("fetch request failed")
+        }
+      })
+      .then(items => setItems(items))
+      .catch(error => console.log(error))
   }, []);
 
   // add this function!
@@ -344,9 +372,16 @@ function ItemForm({ onAddItem }) {
       },
       body: JSON.stringify(itemData),
     })
-      .then((r) => r.json())
+      .then(r => {
+        if (r.ok) {
+          return r.json()
+        } else {
+          console.log("item failed to create")
+        } 
+      })
       // call the onAddItem prop with the newItem
-      .then((newItem) => onAddItem(newItem));
+      .then(newItem => onAddItem(newItem))
+      .catch(error => console.log(error))
   }
 
   // ...rest of component
