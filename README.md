@@ -1,31 +1,28 @@
-# React Fetch CRUD Codealong
+# React Fetch CRUD Codealong (Update and Delete)
 
 ## Learning Goals
 
-- Write `fetch` requests for `GET` and `POST`
-- Initiate `fetch` requests with the `useEffect` hook
+- Write `fetch` requests for `PATCH` and `DELETE`
 - Initiate `fetch` requests from user events
 - Update state and trigger a re-render after receiving a response to the `fetch` request
-- Perform Create and Read (CRUD) actions on arrays in state
+- Perform Update and Delete (CRUD) actions on arrays in state
 
 ## Introduction
 
-In labs and technical lessons up to this point, we've seen how to use `fetch` in a React application for some common single-page application patterns, such as:
+If you have not yet completed the Create and Read actions on the Shopping List application, [lesson GitHub repo: Fetch CRUD Codealong Create and Read](https://github.com/learn-co-curriculum/react-hooks-fetch-cr-code-along/tree/main), it is recommended you start by completing that lesson. We'll continue working on the application in this lesson.
+The last time we worked on this application, we used `fetch` to display our shopping list and persist new items via a form.
 
-- Requesting data from a server when our application first loads
-- Requesting data from a server on a button click
-
-In both of those cases, our workflow in React follows a similar pattern:
+In both of those cases, our workflow followed the pattern below:
 
 - When X event occurs (_our application loads_, _a user clicks a button_)
 - Make Y fetch request (_GET_)
 - Update Z state (_add all items to state_)
 
 In this codealong lesson, we'll get more practice following this pattern to
-build out our next CRUD action - Create - to work with both our **server-side** data (the
+build out all our final 2 CRUD actions to work with both our **server-side** data (the
 database; in our case, the `db.json` file) as well as our **client-side** data
-(our React state). We'll be working on a shopping list application, using `json-server` to create a RESTful API which we
-can interact with from React by using fetch and HTTP requests.
+(our React state). We'll be revisiting the shopping list application from the
+previous module, this time implemented Update and Delete functionality.
 
 ## Instructions
 
