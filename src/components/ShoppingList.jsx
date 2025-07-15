@@ -20,6 +20,18 @@ function ShoppingList() {
       .catch(error => console.log(error))
   }, []);
 
+  // add this callback function
+  function handleUpdateItem(updatedItem) {
+  const updatedItems = items.map(item => {
+    if (item.id === updatedItem.id) {
+      return updatedItem;
+    } else {
+      return item;
+    }
+  });
+  setItems(updatedItems);
+}
+
   function handleAddItem(newItem) {
     setItems([...items, newItem]);
   }
@@ -42,8 +54,9 @@ function ShoppingList() {
         onCategoryChange={handleCategoryChange}
       />
       <ul className="Items">
-        {itemsToDisplay.map((item) => (
-          <Item key={item.id} item={item} />
+        {/* pass it as a prop to Item */}
+        {itemsToDisplay.map(item => (
+          <Item key={item.id} item={item} onUpdateItem={handleUpdateItem} />
         ))}
       </ul>
     </div>
